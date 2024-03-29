@@ -1,9 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Security_Layer Template
 
-Capabilities:
-  - CAPABILITY_NAMED_IAM
-
 Resources:
   Lecture10Sg:
     Type: AWS::EC2::SecurityGroup
@@ -58,6 +55,7 @@ Resources:
     Type: "AWS::IAM::Role"
     Properties:
       RoleName: "EC2InstanceRole"
+      Capabilities: CAPABILITY_NAMED_IAM
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
