@@ -31,7 +31,7 @@ Resources:
       ImageId: ami-027a31eff54f1fe4c
       Tags:
         - Key: Name
-          Value: Lecture10EC2
+          Value: Lecture10EC2Master
       KeyName: lecture13
 
   Lecture10EC2Target:
@@ -46,7 +46,7 @@ Resources:
       ImageId: ami-027a31eff54f1fe4c
       Tags:
         - Key: Name
-          Value: Lecture10EC2
+          Value: Lecture10EC2Target
       KeyName: lecture13
 
 # RDS
