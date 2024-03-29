@@ -11,7 +11,7 @@ jobs:
     executor: aws-cli/default
     steps:
       - checkout
-      - aws-cli/setup
+      - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
@@ -19,7 +19,7 @@ jobs:
           name: deploy cloudformation
           command: |
             set -x
-            aws cloudformation deply --template-file cloudformation/network_layer.yml --stack-name samplestack
+            aws cloudformation deploy --template-file cloudformation/network_layer.yml --stack-name samplestack
 
 
 #           name: "template validate"
