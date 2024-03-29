@@ -3,6 +3,7 @@ version: 2.1
 
 orbs: 
   aws-cli: circleci/aws-cli@4.1.2
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 jobs:
   provisioning-stack:
@@ -21,26 +22,9 @@ jobs:
           name: deploy cloudformation
           command: |
             set -x
-            aws cloudformation deploy --template-file cloudformation/network_layer.yml --stack-name samplestack
-
-
-#           name: "template validate"
-#           command: |
-#             aws cloudformation validate-template --template-body file://cloudformation/network_layer.yml;
-#             aws cloudformation validate-template --template-body file://cloudformation/security_layer.yml;
-#             aws cloudformation validate-template --template-body file://cloudformation/application_layer.yml;
-#       - aws-cloudformation/deploy:
-#           template-file-path: cloudformation/network_layer.yml
-#           stack-name: network_layer
-#           extra-arguments:  --no-fail-on-empty-changeset
-#       - aws-cloudformation/deploy:
-#           template-file-path: cloudformation/security_layer.yml
-#           stack-name: security_layer.yml
-#           extra-arguments:  --no-fail-on-empty-changeset
-#       - aws-cloudformation/deploy:
-#           template-file-path: cloudformation/application_layer.yml
-#           stack-name: application_layer.yml
-#           extra-arguments:  --no-fail-on-empty-changeset
+            aws cloudformation deploy --template-file cloudformation/network_layer.yml --stack-name networklayer
+            aws cloudformation deploy --template-file cloudformation/security_layer.yml --stack-name securitylayer
+            aws cloudformation deploy --template-file cloudformation/application_layer.yml --stack-name applicationlayer
 
 workflows:
   version:  2
