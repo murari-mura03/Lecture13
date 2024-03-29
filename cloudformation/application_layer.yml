@@ -19,7 +19,22 @@ Parameters:
 
 # EC2
 Resources:
-  Lecture10EC2:
+  Lecture10EC2Master:
+    Type: AWS::EC2::Instance
+    Properties:
+      NetworkInterfaces:
+        - SubnetId: !ImportValue PublicSubnet1aId
+          GroupSet:
+            - !ImportValue Lecture10SgId
+          DeviceIndex: 0
+      InstanceType: !Ref InstanceType
+      ImageId: ami-027a31eff54f1fe4c
+      Tags:
+        - Key: Name
+          Value: Lecture10EC2
+      KeyName: lecture13
+
+  Lecture10EC2Target:
     Type: AWS::EC2::Instance
     Properties:
       NetworkInterfaces:
