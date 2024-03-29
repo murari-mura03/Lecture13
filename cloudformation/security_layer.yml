@@ -1,6 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Security_Layer Template
 
+Capabilities:
+  - CAPABILITY_NAMED_IAM
+
 Resources:
   Lecture10Sg:
     Type: AWS::EC2::SecurityGroup
