@@ -11,9 +11,8 @@ Parameters:
       - m1.large
   DBInstanceType:
     Type: String
-    Default: db.t2.micro
+    Default: db.t3.micro
     AllowedValues:
-      - db.t2.micro
       - db.t2.small
       - db.t2.medium
 
