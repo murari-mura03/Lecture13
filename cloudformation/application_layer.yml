@@ -122,12 +122,3 @@ Resources:
       BucketName: lecture10mura03s3
       VersioningConfiguration:
         Status: Enabled
-  Lecture10mura03s3BucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref Lecture10mura03s3
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: "Allow"
-            Action: "s3:*"
