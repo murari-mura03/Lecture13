@@ -62,10 +62,6 @@ Resources:
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
 
-Capabilities:
-  - CAPABILITY_IAM
-  - CAPABILITY_NAMED_IAM
-
 # Outputs
 Outputs:
   Lecture10Sg:
