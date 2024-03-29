@@ -70,6 +70,10 @@ Resources:
               - Effect: "Allow"
                 Action: "s3:*"
                 Resource: "*"
+
+  Capabilities:
+    - CAPABILITY_IAM
+    - CAPABILITY_NAMED_IAM
   
   # Secrets Managet
   RDSSecret: 
