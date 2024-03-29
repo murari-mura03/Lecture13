@@ -1,6 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Security_Layer Template
 
+Capabilities:
+  - CAPABILITY_IAM
+  - CAPABILITY_NAMED_IAM
+
 Resources:
   Lecture10Sg:
     Type: AWS::EC2::SecurityGroup
@@ -70,10 +74,6 @@ Resources:
               - Effect: "Allow"
                 Action: "s3:*"
                 Resource: "*"
-
-  Capabilities:
-    - CAPABILITY_IAM
-    - CAPABILITY_NAMED_IAM
   
   # Secrets Managet
   RDSSecret: 
