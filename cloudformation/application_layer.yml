@@ -13,6 +13,7 @@ Parameters:
     Type: String
     Default: db.t3.micro
     AllowedValues:
+      - db.t3.micro
       - db.t2.small
       - db.t2.medium
 
@@ -51,7 +52,7 @@ Resources:
           - ":SecretString:password}}"
       DBName: Lecture10RDS
       Engine: mysql
-      EngineVersion: 8.0.33
+      EngineVersion: 8.0.35
       DBSubnetGroupName: !Ref Lecture10RDSSubnetgroup
       MultiAZ: false
       VPCSecurityGroups:
