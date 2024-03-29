@@ -32,7 +32,7 @@ Resources:
       Tags:
         - Key: Name
           Value: Lecture10EC2
-      KeyName: raizetech-ec2-1.1
+      KeyName: lecture13
 
 # RDS
   Lecture10RDS:
