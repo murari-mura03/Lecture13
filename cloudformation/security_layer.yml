@@ -50,26 +50,26 @@ Resources:
           Value: SecurityGroupALB
       VpcId: !ImportValue Lecture10VpcId
   
-  # #IAMロール
-  # EC2InstanceRole:
-  #   Type: "AWS::IAM::Role"
-  #   Properties:
-  #     RoleName: "EC2InstanceRole"
-  #     AssumeRolePolicyDocument:
-  #       Version: "2012-10-17"
-  #       Statement:
-  #         - Effect: "Allow"
-  #           Principal:
-  #             Service: "ec2.amazonaws.com"
-  #           Action: "sts:AssumeRole"
-  #     Policies:
-  #       - PolicyName: "S3FullAccessPolicy"
-  #         PolicyDocument:
-  #           Version: "2012-10-17"
-  #           Statement:
-  #             - Effect: "Allow"
-  #               Action: "s3:*"
-  #               Resource: "*"
+  #IAMロール
+  EC2InstanceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: "EC2InstanceRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "S3FullAccessPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "s3:*"
+                Resource: "*"
   
   # Secrets Managet
   RDSSecret: 
@@ -82,6 +82,10 @@ Resources:
         GenerateStringKey: "password"
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
+
+Capabilities:
+  - CAPABILITY_IAM
+  - CAPABILITY_NAMED_IAM
 
 # Outputs
 Outputs:
@@ -100,15 +104,15 @@ Outputs:
     Export:
       Name: SecurityGroupALBId
 
-  # EC2InstanceRoleName:
-  #   Value: !Ref EC2InstanceRole
-  #   Export:
-  #     Name: EC2InstanceRoleExportName
+  EC2InstanceRoleName:
+    Value: !Ref EC2InstanceRole
+    Export:
+      Name: EC2InstanceRoleExportName
   
-  # EC2InstanceRoleArn:
-  #   Value: !GetAtt EC2InstanceRole.Arn
-  #   Export:
-  #     Name: EC2InstanceRoleExportArn
+  EC2InstanceRoleArn:
+    Value: !GetAtt EC2InstanceRole.Arn
+    Export:
+      Name: EC2InstanceRoleExportArn
 
   RDSSecretArn:
     Value: !Ref RDSSecret
