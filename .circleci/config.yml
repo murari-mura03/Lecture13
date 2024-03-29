@@ -12,6 +12,12 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup
+      - run:
+          name: "template validate"
+          command: |
+            aws cloudformation validate-template --template-body file://cloudformation/network_layer.yml;
+            aws cloudformation validate-template --template-body file://cloudformation/security_layer.yml;
+            aws cloudformation validate-template --template-body file://cloudformation/application_layer.yml;
       - aws-cloudformation/deploy:
           template-file-path: cloudformation/network_layer.yml
           stack-name: network_layer
