@@ -4,7 +4,7 @@
   register: nodejs_bin
 
 - name: add repository for nodejs
-  shell: bash -lc "curl -sL https://rpm.nodesource.com/setup_16.x | bash -"
+  shell: bash -lc "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash"
   when: not nodejs_bin.stat.exists
   become: true
 
@@ -22,4 +22,3 @@
     global: true
   become: true
   when: not nodejs_bin.stat.exists
-  
