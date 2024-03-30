@@ -35,6 +35,10 @@ jobs:
             - "SHA256:tEZSyjFZuMgjp5IzskmSJez4J9MIkBs6wHDS2VHU344"
       - ansible-playbook/install:
           version: 2.10.7
+      - run:
+          name: Execute Ansible playbook
+          command: |
+            yes | ansible-playbook install_nginx.yml
       - ansible-playbook/playbook:
           playbook: ansible/install_nginx.yml
           playbook-options: '-i ansible/inventory' 
