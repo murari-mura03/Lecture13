@@ -97,8 +97,10 @@ Resources:
       Port: 80
       Protocol: HTTP
       Targets:
-        - Id: !Ref Lecture10EC2
+        - Id:
+            Ref: Lecture10EC2
           Port: 80
+      VpcId: !ImportValue Lecture10VpcId
 
 # ALBのリスナーの指定
   ALBListener:
