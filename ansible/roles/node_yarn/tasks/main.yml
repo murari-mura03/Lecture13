@@ -1,3 +1,12 @@
+- name: Check if glibc version meets requirements
+  command: ldd --version | grep 'ldd (GNU libc)'
+  register: glibc_version_output
+
+- name: Update glibc if needed
+  shell: yum update glibc
+  become: true
+  when: glibc_version_output.stdout | regex_search("2\.26") | bool
+
 - name: check if nodejs already installed
   stat:
     path: /usr/bin/node
