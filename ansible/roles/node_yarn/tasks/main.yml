@@ -1,30 +1,16 @@
-- name: Install glibc version 2.28
-  shell: rpm -Uvh glibc-2.28.rpm
-  args:
-    executable: /bin/bash
+- name: Remove Node.js
   become: true
-
-- name: check if nodejs already installed
-  stat:
-    path: /usrbin/node
-  register: nodejs_bin
-
-- name: add repository for nodejs
-  shell: bash -lc "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash"
-  when: not nodejs_bin.stat.exists
-  become: true
-
-- name: install nodejs
   yum:
     name: nodejs
-    state:  installed
-  become: true
-  when: not nodejs_bin.stat.exists
+    state: absent
+    autoremove: true
 
-- name: install yarn
-  npm:
-    name: yarn
-    state: present
-    global: true
+- name: Add Node.js repository
   become: true
-  when: not nodejs_bin.stat.exists
+  shell: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+
+- name: Install Node.js
+  become: true
+  yum:
+    name: nodejs
+    state: present
