@@ -48,6 +48,14 @@ Resources:
         - Key: Name
           Value: Lecture10EC2Target
       KeyName: lecture13
+      IamInstanceProfile: !Ref IamInstanceProfile
+  
+  IamInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !ImportValue EC2InstanceRoleExportName
 
 # RDS
   Lecture10RDS:
