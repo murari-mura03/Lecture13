@@ -7,19 +7,22 @@
 - name: install general packages
   yum:
     name: 
-      - git 
-      - bzip2 
-      - readline-devel 
-      - zlib-devel 
-      - gcc 
+      - git
+      - make 
+      - gcc-c++ 
+      - patch 
       - libyaml-devel 
       - libffi-devel 
-      - gdbm-devel 
-      - ncurses-devel 
-      - gcc-c++ 
-      - mysql-devel 
+      - libicu-devel 
+      - zlib-devel 
+      - readline-devel 
+      - libxml2-devel 
+      - libxslt-devel 
       - ImageMagick 
-      - ImageMagick-devel
-      - glibc
+      - ImageMagick-devel 
+      - openssl-devel 
+      - libcurl
+      - libcurl-devel
+      - curl
     state: installed
   become: true
