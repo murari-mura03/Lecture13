@@ -20,6 +20,5 @@
       - mysql-devel 
       - ImageMagick 
       - ImageMagick-devel 
-      - epel-release
     state: installed
   become: true
