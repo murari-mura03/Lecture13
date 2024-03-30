@@ -4,6 +4,7 @@
 
 - name: Update glibc if needed
   shell: yum list updates | grep glibc
+  become: true
   register: glibc_update_check
   changed_when: glibc_update_check.stdout is not search("glibc.x86_64")
 
