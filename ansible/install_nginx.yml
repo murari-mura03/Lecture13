@@ -1,0 +1,21 @@
+- name: Setup nginx server on myserver list (host group)
+  hosts: 18.179.112.220
+  become: true
+  tasks:
+    - name: Enable EPEL repository
+      command: amazon-linux-extras install epel -y
+
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: latest
+
+    - name: Start nginx service
+      service:
+        name: nginx
+        state: started
+
+    - name: Enable nginx service
+      service:
+        name: nginx
+        enabled: yes
