@@ -2,7 +2,7 @@
   yum:
     name: '*'
     state: latest
-  become: yes
+  become: true
 
 - name: install general packages
   yum:
@@ -25,4 +25,4 @@
       - libcurl-devel
       - curl
     state: installed
-  become: yes
+  become: true
