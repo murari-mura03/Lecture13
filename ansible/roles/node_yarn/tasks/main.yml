@@ -1,39 +1,31 @@
-- name: Check if glibc version meets requirements
-  command: ldd --version | grep 'ldd (GNU libc)'
-  register: glibc_version_output
 
-- name: Update glibc if needed
-  shell: yum check-update glibc
-  register: glibc_update_check
-  changed_when: glibc_update_check.stdout != ""
+- name: Download and install nvm
+  shell: |
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  args:
+    creates: ~/.nvm 
+  environment:
+    HOME: "{{ ansible_env.HOME }}" 
 
-- name: Install glibc update if needed
-  shell: yum update glibc -y
-  become: true
-  when: glibc_version_output.stdout is search("2.26") and glibc_update_check.changed
+- name: Enable nvm
+  shell: |
+    . ~/.nvm/nvm.sh
+  args:
+    executable: /bin/bash
+  environment:
+    HOME: "{{ ansible_env.HOME }}"
 
-- name: check if nodejs already installed
-  stat:
-    path: /usr/bin/node
-  register: nodejs_bin
+- name: Install Node.js
+  shell: |
+    nvm install 17.9.1
+  args:
+    executable: /bin/bash
+  environment:
+    HOME: "{{ ansible_env.HOME }}"
 
-- name: add repository for nodejs
-  shell: bash -lc "curl -sL https://rpm.nodesource.com/setup_18.x | bash -"
-  when: not nodejs_bin.stat.exists
-  become: true
-
-- name: install nodejs
-  yum:
-    name: nodejs
-    state: present
-  become: true
-  when: not nodejs_bin.stat.exists
-
-- name: install yarn
+- name: Install Yarn
   npm:
     name: yarn
-    version: "1.22.17"
+    global: yes
     state: present
-    global: true
-  become: true
-  when: not nodejs_bin.stat.exists
+
