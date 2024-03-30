@@ -25,19 +25,6 @@ jobs:
             aws cloudformation deploy --template-file cloudformation/network_layer.yml --stack-name networklayer
             aws cloudformation deploy --template-file cloudformation/security_layer.yml --stack-name securitylayer --capabilities CAPABILITY_NAMED_IAM
             aws cloudformation deploy --template-file cloudformation/application_layer.yml --stack-name applicationlayer --capabilities CAPABILITY_IAM
-      
-  execute-ansible-playbook:
-    executor: ansible-playbook/default
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:tEZSyjFZuMgjp5IzskmSJez4J9MIkBs6wHDS2VHU344"
-      - ansible-playbook/install:
-          version: 2.10.7
-      - ansible-playbook/playbook:
-          playbook: ansible/playbook.yml
-          playbook-options: '-i ansible/inventory' 
           
   
 workflows:
