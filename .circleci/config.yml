@@ -34,7 +34,7 @@ jobs:
           fingerprints:
             - "SHA256:tEZSyjFZuMgjp5IzskmSJez4J9MIkBs6wHDS2VHU344"
       - ansible-playbook/install:
-          version: 2.16.3
+          version: 2.10.7
       - ansible-playbook/playbook:
           playbook: ansible/install_nginx.yml
           playbook-options: '-i ansible/inventory' 
