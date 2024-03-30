@@ -1,6 +1,8 @@
-# - name: Update glibc
-#   become: true
-#   shell: sudo yum update glibc
+- name: Install glibc version 2.28
+  shell: rpm -Uvh glibc-2.28.rpm
+  args:
+    executable: /bin/bash
+  become: true
 
 - name: check if nodejs already installed
   stat:
