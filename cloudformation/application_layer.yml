@@ -19,7 +19,7 @@ Parameters:
 
 # EC2
 Resources:
-  Lecture10EC2Master:
+  Lecture10EC2:
     Type: AWS::EC2::Instance
     Properties:
       NetworkInterfaces:
@@ -34,22 +34,6 @@ Resources:
           Value: Lecture10EC2Master
       KeyName: lecture13
 
-  Lecture10EC2Target:
-    Type: AWS::EC2::Instance
-    Properties:
-      NetworkInterfaces:
-        - SubnetId: !ImportValue PublicSubnet1aId
-          GroupSet:
-            - !ImportValue Lecture10SgId
-          DeviceIndex: 0
-      InstanceType: !Ref InstanceType
-      ImageId: ami-027a31eff54f1fe4c
-      Tags:
-        - Key: Name
-          Value: Lecture10EC2Target
-      KeyName: lecture13
-      IamInstanceProfile: !Ref IamInstanceProfile
-  
   IamInstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
@@ -113,11 +97,8 @@ Resources:
       Port: 80
       Protocol: HTTP
       Targets:
-        - Id: !Ref Lecture10EC2Master
+        - Id: !Ref Lecture10EC2
           Port: 80
-        - Id: !Ref Lecture10EC2Target
-          Port: 80
-      VpcId: !ImportValue Lecture10VpcId
 
 # ALBのリスナーの指定
   ALBListener:
