@@ -2,11 +2,11 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Security_Layer Template
 
 Resources:
-  Lecture10Sg:
+  Lecture13Sg:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Lecture10Sg
-      GroupName: Lecture10Sg
+      GroupDescription: Lecture13Sg
+      GroupName: Lecture13Sg
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -18,13 +18,13 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: Lecture10Sg
-      VpcId: !ImportValue Lecture10VpcId
-  Lecture10RDSSg:
+          Value: Lecture13Sg
+      VpcId: !ImportValue Lecture13VpcId
+  Lecture13RDSSg:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Lecture10RDSSg
-      GroupName: Lecture10RDSSg
+      GroupDescription: Lecture13RDSSg
+      GroupName: Lecture13RDSSg
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3306
@@ -32,8 +32,8 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: Lecture10RDSSg
-      VpcId: !ImportValue Lecture10VpcId
+          Value: Lecture13RDSSg
+      VpcId: !ImportValue Lecture13VpcId
 
   SecurityGroupALB:
     Type: AWS::EC2::SecurityGroup
@@ -48,7 +48,7 @@ Resources:
       Tags:
         - Key: Name
           Value: SecurityGroupALB
-      VpcId: !ImportValue Lecture10VpcId
+      VpcId: !ImportValue Lecture13VpcId
 
   #IAMロール
   EC2InstanceRole:
@@ -85,15 +85,15 @@ Resources:
 
 # Outputs
 Outputs:
-  Lecture10Sg:
-    Value: !Ref Lecture10Sg
+  Lecture13Sg:
+    Value: !Ref Lecture13Sg
     Export:
-      Name: Lecture10SgId
+      Name: Lecture13SgId
 
-  Lecture10RDSSg:
-    Value: !Ref Lecture10RDSSg
+  Lecture13RDSSg:
+    Value: !Ref Lecture13RDSSg
     Export:
-      Name: Lecture10RDSSgId
+      Name: Lecture13RDSSgId
 
   SecurityGroupALB:
     Value: !Ref SecurityGroupALB

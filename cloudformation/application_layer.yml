@@ -19,19 +19,19 @@ Parameters:
 
 # EC2
 Resources:
-  Lecture10EC2:
+  Lecture13EC2:
     Type: AWS::EC2::Instance
     Properties:
       NetworkInterfaces:
         - SubnetId: !ImportValue PublicSubnet1aId
           GroupSet:
-            - !ImportValue Lecture10SgId
+            - !ImportValue Lecture13SgId
           DeviceIndex: 0
       InstanceType: !Ref InstanceType
       ImageId: ami-027a31eff54f1fe4c
       Tags:
         - Key: Name
-          Value: Lecture10EC2Master
+          Value: Lecture13EC2
       KeyName: lecture13
 
   IamInstanceProfile:
@@ -42,10 +42,10 @@ Resources:
         - !ImportValue EC2InstanceRoleExportName
 
 # RDS
-  Lecture10RDS:
+  Lecture13RDS:
     Type: AWS::RDS::DBInstance
     Properties:
-      DBInstanceIdentifier: "Lecture10RDS"
+      DBInstanceIdentifier: "Lecture13RDS"
       AllocatedStorage : 20
       DBInstanceClass: !Ref DBInstanceType
       Port: 3306
@@ -57,28 +57,28 @@ Resources:
         - - "{{resolve:secretsmanager:"
           - !ImportValue RDSSecretArn
           - ":SecretString:password}}"
-      DBName: Lecture10RDS
+      DBName: Lecture13RDS
       Engine: mysql
       EngineVersion: 8.0.35
-      DBSubnetGroupName: !Ref Lecture10RDSSubnetgroup
+      DBSubnetGroupName: !Ref Lecture13RDSSubnetgroup
       MultiAZ: false
       VPCSecurityGroups:
-        - !ImportValue Lecture10RDSSgId
+        - !ImportValue Lecture13RDSSgId
 
-  Lecture10RDSSubnetgroup:
+  Lecture13RDSSubnetgroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
       DBSubnetGroupDescription: "My RDS Subnet Group"
-      DBSubnetGroupName: Lecture10RDSSubnetgroup
+      DBSubnetGroupName: Lecture13RDSSubnetgroup
       SubnetIds:
         - !ImportValue PrivateSubnet1aId
         - !ImportValue PrivateSubnet1cId
 
-  Lecture10ALB:
+  Lecture13ALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       IpAddressType: ipv4
-      Name: Lecture10ALB
+      Name: Lecture13ALB
       Scheme: internet-facing
       SecurityGroups:
         - !ImportValue SecurityGroupALBId
@@ -87,7 +87,7 @@ Resources:
         - !ImportValue PublicSubnet1cId
       Tags:
         - Key: Name
-          Value: Lecture10ALB
+          Value: Lecture13ALB
 
 # ALBのターゲットグループの指定
   ALBTargetGroup:
@@ -98,9 +98,9 @@ Resources:
       Protocol: HTTP
       Targets:
         - Id:
-            Ref: Lecture10EC2
+            Ref: Lecture13EC2
           Port: 80
-      VpcId: !ImportValue Lecture10VpcId
+      VpcId: !ImportValue Lecture13VpcId
 
 # ALBのリスナーの指定
   ALBListener:
@@ -111,25 +111,25 @@ Resources:
           TargetGroupArn:
             !Ref ALBTargetGroup
       LoadBalancerArn:
-        !Ref Lecture10ALB
+        !Ref Lecture13ALB
       Port: 80
       Protocol: HTTP
 # S3
-  Lecture10mura03s3:
+  Lecture13mura03s3:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: lecture10mura03s3
+      BucketName: Lecture13mura03s3
       VersioningConfiguration:
         Status: Enabled
-  Lecture10mura03s3BucketPolicy:
+  Lecture13mura03s3BucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: !Ref Lecture10mura03s3
+      Bucket: !Ref Lecture13mura03s3
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
           - Effect: "Allow"
             Action: "s3:*"
-            Resource: !Sub "arn:aws:s3:::lecture10mura03s3/*"
+            Resource: !Sub "arn:aws:s3:::Lecture13mura03s3/*"
             Principal:
               AWS: !ImportValue EC2InstanceRoleExportArn
