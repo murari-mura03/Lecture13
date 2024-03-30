@@ -3,9 +3,14 @@
   register: glibc_version_output
 
 - name: Update glibc if needed
+  shell: yum list --upgrades glibc | grep glibc
+  register: glibc_update_check
+  changed_when: glibc_update_check.stdout is not search("glibc.x86_64")
+
+- name: Install glibc update
   shell: yum update glibc
   become: true
-  when: glibc_version_output.stdout | regex_search("2\.26") | bool
+  when: glibc_version_output.stdout is search("2.26") and glibc_update_check.changed
 
 - name: check if nodejs already installed
   stat:
