@@ -10,8 +10,8 @@
 
   roles:
     - general
-    - node_yarn
-    - ruby
-    - rails
+    # - node_yarn
+    # - ruby
+    # - rails
     - nginx
-    - setup_server
+    # - setup_server
