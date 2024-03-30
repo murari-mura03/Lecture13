@@ -19,6 +19,7 @@
       - gcc-c++ 
       - mysql-devel 
       - ImageMagick 
-      - ImageMagick-devel 
+      - ImageMagick-devel
+      - glibc
     state: installed
   become: true

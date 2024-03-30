@@ -1,6 +1,6 @@
-- name: Update glibc
-  become: true
-  shell: sudo yum update glibc
+# - name: Update glibc
+#   become: true
+#   shell: sudo yum update glibc
 
 - name: check if nodejs already installed
   stat:
