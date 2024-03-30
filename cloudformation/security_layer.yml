@@ -49,6 +49,27 @@ Resources:
         - Key: Name
           Value: SecurityGroupALB
       VpcId: !ImportValue Lecture10VpcId
+
+  #IAMロール
+  EC2InstanceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: "EC2InstanceRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "S3FullAccessPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "s3:*"
+                Resource: "*"
   
   # Secrets Managet
   RDSSecret: 
@@ -83,3 +104,13 @@ Outputs:
     Value: !Ref RDSSecret
     Export:
       Name: RDSSecretArn
+  
+  EC2InstanceRoleName:
+    Value: !Ref EC2InstanceRole
+    Export:
+      Name: EC2InstanceRoleExportName
+  
+  EC2InstanceRoleArn:
+    Value: !GetAtt EC2InstanceRole.Arn
+    Export:
+      Name: EC2InstanceRoleExportArn

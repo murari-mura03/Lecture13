@@ -23,9 +23,10 @@ jobs:
           command: |
             set -x
             aws cloudformation deploy --template-file cloudformation/network_layer.yml --stack-name networklayer
-            aws cloudformation deploy --template-file cloudformation/security_layer.yml --stack-name securitylayer
+            aws cloudformation deploy --template-file cloudformation/security_layer.yml --stack-name securitylayer --capabilities CAPABILITY_NAMED_IAM
             aws cloudformation deploy --template-file cloudformation/application_layer.yml --stack-name applicationlayer --capabilities CAPABILITY_IAM
 
+  
 workflows:
   version:  2
   provisioning-deploy:
