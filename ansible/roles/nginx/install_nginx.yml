@@ -1,5 +1,3 @@
-- name: Setup nginx server on myserver list (host group)
-  hosts: 18.179.112.220
   become: true
   tasks:
     - name: Enable EPEL repository
