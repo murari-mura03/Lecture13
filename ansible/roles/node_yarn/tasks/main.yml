@@ -21,7 +21,7 @@
     executable: /bin/bash
 
 - name: Install Yarn globally using npm
-  command: npm install -g yarn@1.22.10
-  args:
-    warn: false
-  become: true
+  npm:
+    name: yarn
+    state: present
+    global: yes
