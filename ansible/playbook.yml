@@ -1,5 +1,5 @@
 - name: main-playbook
-  hosts: 52.195.190.137
+  hosts: 18.181.199.50
   become: True
   
   vars: 
