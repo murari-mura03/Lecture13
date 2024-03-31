@@ -7,7 +7,7 @@
 
 - name: Add Node.js repository
   become: true
-  shell: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+  shell: curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
 
 - name: Install Node.js
   become: true
