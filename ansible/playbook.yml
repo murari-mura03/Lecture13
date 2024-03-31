@@ -12,7 +12,7 @@
 
   roles:
     - general
-    - node_yarn
+    # - node_yarn
     # - ruby
     # - rails
     - nginx
