@@ -20,13 +20,8 @@
   args:
     executable: /bin/bash
 
-- name: Install Yarn globally using npm
-  npm:
-    name: yarn
-    global: yes
+- name: node_yarn | Install Yarn globally using npm
+  command: npm install -g yarn
   environment:
-    PATH: "/home/ec2-user/.nvm/versions/node/v20.12.0/bin:$PATH"
-
-
-
+    PATH: "/home/ec2-user/.nvm/versions/node/v20.12.0/bin:{{ ansible_env.PATH }}"
 
