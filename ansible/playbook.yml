@@ -1,5 +1,5 @@
 - name: main-playbook
-  hosts: 18.181.199.50
+  hosts: 18.181.193.206
   become: True
   
   vars: 
@@ -12,7 +12,7 @@
 
   roles:
     - general
-    - node_yarn
+    # - node_yarn
     # - ruby
     # - rails
     - nginx
