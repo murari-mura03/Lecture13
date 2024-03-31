@@ -11,8 +11,8 @@
     my_app_repo: https://github.com/yuta-ushijima/raisetech-live8-sample-app.git
 
   roles:
-    # - general
-    # - node_yarn
+    - general
+    - node_yarn
     # - ruby
     # - rails
     - nginx
