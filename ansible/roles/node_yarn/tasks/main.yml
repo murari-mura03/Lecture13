@@ -20,9 +20,9 @@
   args:
     executable: /bin/bash
 
-- name: install yarn
-  npm:
-    name: yarn
-    state: present
-    global: yes
-  become: true
+# - name: install yarn
+#   npm:
+#     name: yarn
+#     state: present
+#     global: yes
+#   become: true
