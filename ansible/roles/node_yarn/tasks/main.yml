@@ -6,7 +6,7 @@
 
 - name: Install Node.js from Amazon Linux Extras
   yum:
-    name: 17.9.1
+    name: "{{ nodejs_package }}"
     state: present
   vars:
     nodejs_package: "nodejs14"
