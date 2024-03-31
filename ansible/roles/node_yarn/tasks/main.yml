@@ -25,7 +25,8 @@
     name: yarn
     global: yes
   environment:
-    PATH: "~/.nvm/versions/node/v20.12.0/bin:$PATH"
+    PATH: "/home/ec2-user/.nvm/versions/node/v20.12.0/bin:$PATH"
+
 
 
 
