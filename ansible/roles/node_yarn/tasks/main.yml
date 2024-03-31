@@ -20,8 +20,8 @@
   args:
     executable: /bin/bash
 
-- name: Install "imagemin" node.js package
+- name: Install "imagemin" node.js package globally.
   community.general.yarn:
     name: imagemin
-    state: present
+    global: true
 
