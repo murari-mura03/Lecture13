@@ -20,9 +20,8 @@
   args:
     executable: /bin/bash
 
-- name: Install "imagemin" node.js package on version 1.22.19
+- name: Install "imagemin" node.js package
   community.general.yarn:
     name: imagemin
-    version: '1.22.19'
-    path: /bin/bash
+    state: present
 
