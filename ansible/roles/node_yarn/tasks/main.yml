@@ -5,16 +5,6 @@
     state: absent
     autoremove: true
 
-- name: Add Node.js repository
-  become: true
-  shell: curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
-
-- name: Install glibc
-  become: true
-  yum:
-    name: glibc
-    state: present
-
 - name: Install Node.js
   become: true
   yum:
