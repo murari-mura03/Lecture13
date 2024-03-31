@@ -23,5 +23,4 @@
 - name: Install Yarn globally using npm
   npm:
     name: yarn
-    global: yes
 
