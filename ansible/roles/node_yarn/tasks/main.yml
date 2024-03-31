@@ -1,11 +1,22 @@
-
-- name: Enable Amazon Linux Extras repository for Node.js
+- name: Install curl
   yum:
-    name: amazon-linux-extras
+    name: curl
     state: present
 
-- name: Install Node.js from Amazon Linux Extras
-  yum:
-    name: "nodejs14"
-    state: present
-  become: true
+- name: Install nvm
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  args:
+    creates: ~/.nvm
+
+- name: Load nvm
+  shell: source ~/.bashrc
+  environment:
+    PATH: "{{ ansible_env.PATH }}"
+
+- name: Install Node.js 17.9.1 version
+  shell: |
+    source ~/.bashrc
+    nvm install 17.9.1
+  args:
+    executable: /bin/bash
+    
