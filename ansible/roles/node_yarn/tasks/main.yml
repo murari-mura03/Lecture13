@@ -19,3 +19,10 @@
     nvm install 17.9.1
   args:
     executable: /bin/bash
+
+- name: install yarn
+  npm:
+    name: yarn
+    state: present
+    global: yes
+  become: true
