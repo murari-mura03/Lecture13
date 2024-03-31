@@ -20,8 +20,9 @@
   args:
     executable: /bin/bash
 
-- name: Install Yarn 1.22.19
-  shell: |
-    curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.19
-  args:
-    executable: /bin/bash
+- name: Install "imagemin" node.js package on version 1.22.19
+  community.general.yarn:
+    name: imagemin
+    version: '1.22.19'
+    path: /bin/bash
+
