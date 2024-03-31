@@ -1,6 +1,12 @@
-# nodejs_install/tasks/main.yml
 
-- name: Install Node.js
-  package:
-    name: "nodejs"
+- name: Enable Amazon Linux Extras repository for Node.js
+  yum:
+    name: amazon-linux-extras
     state: present
+
+- name: Install Node.js from Amazon Linux Extras
+  yum:
+    name: 17.9.1
+    state: present
+  vars:
+    nodejs_package: "nodejs14"
