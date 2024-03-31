@@ -20,10 +20,12 @@
   args:
     executable: /bin/bash
 
-- name: install yarn
+- name: Install Yarn globally using npm
   npm:
     name: yarn
-    state: present
     global: yes
+  environment:
+    PATH: "~/.nvm/versions/node/v20.12.0/bin:$PATH"
+
 
 
