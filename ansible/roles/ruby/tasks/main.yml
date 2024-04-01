@@ -1,4 +1,4 @@
-# Install rvenv
+# Install rbenv
 - name: Clone rbenv repository
   git:
     repo: "https://github.com/sstephenson/rbenv.git"
@@ -7,7 +7,6 @@
 
 - name: Change ownership of .rbenv directory to ec2-user
   become: true
-  become_user: root
   file:
     path: /home/ec2-user/.rbenv
     owner: ec2-user
@@ -29,10 +28,8 @@
 
 - name: Load .bash_profile
   shell: bash -lc "source /home/ec2-user/.bash_profile"
-    
+
 - name: Install rbenv plugins
-  environment:
-    PATH: "{{ ansible_env.PATH }}:/home/ec2-user/.rbenv/bin"
   git:
     repo: https://github.com/sstephenson/ruby-build.git
     dest: "/home/ec2-user/.rbenv/plugins/ruby-build"
@@ -42,14 +39,14 @@
   stat:
     path: /home/ec2-user/.rbenv/versions/3.1.2
   register: ruby_check
-      
+
 - name: Install Ruby 3.1.2
   shell: bash -lc "rbenv install 3.1.2"
   when: not ruby_check.stat.exists
-    
+
 - name: Rehash rbenv
   shell: bash -lc "rbenv rehash"
- 
+
 - name: Set global Ruby version to 3.1.2
   shell: bash -lc "rbenv global 3.1.2"
 
@@ -66,4 +63,4 @@
     version: 7.0.4
     user_install: no
     executable: /home/ec2-user/.rbenv/shims/gem
-  when: rails_check is failed  
+  when: rails_check is failed
