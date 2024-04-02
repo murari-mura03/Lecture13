@@ -1,5 +1,5 @@
 - name: main-playbook
-  hosts: 54.250.240.75
+  hosts: all
   become_user: ec2-user
   become: True
   
