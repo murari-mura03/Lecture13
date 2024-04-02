@@ -1,5 +1,5 @@
 - name: main-playbook
-  hosts: 18.181.193.206
+  hosts: 52.194.243.175
   become: True
   
   roles:
