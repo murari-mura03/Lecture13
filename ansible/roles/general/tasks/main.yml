@@ -1,9 +1,9 @@
 - name: yum update
+  become_user: root
   yum:
     name: '*'
     state: latest
   become: true
-  remote_user: root
 
 - name: install general packages
   yum:
