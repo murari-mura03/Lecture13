@@ -3,6 +3,7 @@
     name: '*'
     state: latest
   become: true
+  become_method: sudo
 
 - name: install general packages
   yum:
