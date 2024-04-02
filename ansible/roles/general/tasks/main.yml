@@ -6,6 +6,7 @@
   become: true
 
 - name: install general packages
+  become_user: root
   yum:
     name: 
       - git
