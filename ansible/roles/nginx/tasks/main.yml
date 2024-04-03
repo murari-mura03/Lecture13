@@ -3,6 +3,7 @@
   command: amazon-linux-extras install epel -y
 
 - name: Install Nginx
+  become_user: root
   yum:
     name: nginx
     state: latest
