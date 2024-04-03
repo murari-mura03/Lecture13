@@ -1,54 +1,36 @@
----
-- name: Import MySQL GPG key
-  become_user: root
-  shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
-  args:
-    creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
 
-- name: Download and install MySQL repository package
-  become_user: root
-  shell: rpm -Uvh "https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm"
-  args:
-    creates: /etc/yum.repos.d/mysql-community.repo
-      
-- name: Install mysql-devel
+# mysqlのインストール
+
+# MariaDBの削除
+- name: Remove MariaDB
   become_user: root
   yum:
-    name: "{{ item }}"
+    name: mariadb-server
+    state: absent
+
+- name: Import GPG key 
+  become_user: root
+  ansible.builtin.rpm_key:
     state: present
-  with_items:
-    - mysql-server
-    - mysql-devel
-    - mysql-community-devel
-    - mysql-community-server
+    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
+# 公開リポジトリを追加
+- name: Install MySQL repository
+  become_user: root
+  yum:
+    name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
+    state: present
 
-# # Install MySQL
-# - name: Remove MariaDB
-#   become_user: root
-#   yum:
-#     name: mariadb-server
-#     state: absent
+# mysql本体をインストール
+- name: Install MySQL community server
+  become_user: root
+  yum:
+    name: mysql-community-server
+    state: present
 
-# # - name: Import MySQL GPG key
-# #   become_user: root
-# #   shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
-# #   args:
-# #     creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
-
-# - name: Download and install MySQL repository package
-#   become_user: root
-#   shell: rpm -Uvh "https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm"
-#   args:
-#     creates: /etc/yum.repos.d/mysql-community.repo
-      
-# - name: Install mysql-devel
-#   become_user: root
-#   yum:
-#     name: "{{ item }}"
-#     state: present
-#   with_items:
-#       - mysql-server
-#       - mysql-devel
-#       - mysql-community-devel
-#       - mysql-community-server
+- name: Start MySQL service
+  become_user: root
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
