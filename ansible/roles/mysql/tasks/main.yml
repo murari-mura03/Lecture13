@@ -11,11 +11,11 @@
   args:
     creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
 
-# - name: install the mysql rpm from a remote repo
-#   become_user: root
-#   yum:
-#     name: 'https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm'
-#     state: present
+- name: install the mysql rpm from a remote repo
+  become_user: root
+  yum:
+    name: 'https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm'
+    state: present
 
 # - name: enable mysql57-community
 #   become_user: root
