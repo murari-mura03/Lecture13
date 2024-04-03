@@ -5,11 +5,11 @@
     name: mariadb-server
     state: absent
 
-- name: Import MySQL GPG key
-  become_user: root
-  shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
-  args:
-    creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
+# - name: Import MySQL GPG key
+#   become_user: root
+#   shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
+#   args:
+#     creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
 
 - name: Download and install MySQL repository package
   become_user: root
