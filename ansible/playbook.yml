@@ -8,4 +8,5 @@
     - node_yarn
     - ruby
     - nginx
+    - mysql
     # - setup_server
