@@ -3,7 +3,6 @@
   yum:
     name: '*'
     state: latest
-  become: true
 
 - name: install general packages
   become_user: root
@@ -27,4 +26,3 @@
       - libcurl-devel
       - curl
     state: installed
-  become: true

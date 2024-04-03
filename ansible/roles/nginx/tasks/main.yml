@@ -1,4 +1,5 @@
 - name: Enable EPEL repository
+  become_user: root
   command: amazon-linux-extras install epel -y
 
 - name: Install Nginx
