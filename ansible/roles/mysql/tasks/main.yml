@@ -8,7 +8,7 @@
 - name: install the mysql rpm from a remote repo
   become_user: root
   yum:
-    name: 'https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm'
+    name: 'https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm'
     state: present
 
 - name: enable mysql57-community
