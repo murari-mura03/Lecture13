@@ -8,32 +8,32 @@
     name: mariadb-server
     state: absent
 
-# # 公開リポジトリを追加
-# - name: Install MySQL repository
-#   become_user: root
-#   yum:
-#     name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
-#     state: present
+# 公開リポジトリを追加
+- name: Install MySQL repository
+  become_user: root
+  yum:
+    name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
+    state: present
 
-# - name: Import GPG key 
-#   become_user: root
-#   ansible.builtin.rpm_key:
-#     state: present
-#     key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+- name: Import GPG key 
+  become_user: root
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-# # mysql本体をインストール
-# - name: Install MySQL community server
-#   become_user: root
-#   yum:
-#     name: mysql-community-server
-#     state: present
+# mysql本体をインストール
+- name: Install MySQL community server
+  become_user: root
+  yum:
+    name: mysql-community-server
+    state: present
 
-# - name: Start MySQL service
-#   become_user: root
-#   service:
-#     name: mysqld
-#     state: started
-#     enabled: yes
+- name: Start MySQL service
+  become_user: root
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
 
 
 
