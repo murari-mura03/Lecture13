@@ -5,32 +5,38 @@
     name: mariadb-server
     state: absent
 
-- name: install the mysql rpm from a remote repo
+- name: Import MySQL GPG key
   become_user: root
-  yum:
-    name: 'https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm'
-    state: present
+  shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
+  args:
+    creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
 
-- name: enable mysql57-community
-  become_user: root
-  shell: |
-    yum-config-manager --disable mysql80-community
-    yum-config-manager --enable mysql57-community
+# - name: install the mysql rpm from a remote repo
+#   become_user: root
+#   yum:
+#     name: 'https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm'
+#     state: present
 
-- name: Import a key from a url
-  become_user: root
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+# - name: enable mysql57-community
+#   become_user: root
+#   shell: |
+#     yum-config-manager --disable mysql80-community
+#     yum-config-manager --enable mysql57-community
 
-- name: install mysql-community-server
-  become_user: root
-  yum: 
-    name: mysql-community-server
-    state: latest
+# - name: Import a key from a url
+#   become_user: root
+#   ansible.builtin.rpm_key:
+#     state: present
+#     key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-- name: install mysql-devel
-  become_user: root
-  yum: 
-    name: mysql-devel
-    state: latest
+# - name: install mysql-community-server
+#   become_user: root
+#   yum: 
+#     name: mysql-community-server
+#     state: latest
+
+# - name: install mysql-devel
+#   become_user: root
+#   yum: 
+#     name: mysql-devel
+#     state: latest
