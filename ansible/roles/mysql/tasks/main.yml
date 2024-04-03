@@ -2,7 +2,7 @@
 - name: remove the MariaDB
   become_user: root
   yum:
-    name: mariadb-server
+    name: mariadb-*
     state: absent
 
 - name: Import MySQL GPG key
@@ -21,10 +21,4 @@
   become_user: root
   yum: 
     name: mysql-community-server
-    state: latest
-
-- name: install mysql-devel
-  become_user: root
-  yum: 
-    name: mysql-devel
-    state: latest
+    state: present
