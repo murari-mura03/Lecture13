@@ -9,11 +9,13 @@
     state: latest
 
 - name: Start nginx service
+  become_user: root
   service:
     name: nginx
     state: started
 
 - name: Enable nginx service
+  become_user: root
   service:
     name: nginx
     enabled: yes
