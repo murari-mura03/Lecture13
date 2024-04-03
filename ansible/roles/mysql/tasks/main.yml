@@ -8,76 +8,76 @@
     name: mariadb-server
     state: absent
 
-# 公開リポジトリを追加
-- name: Install MySQL repository
-  become_user: root
-  yum:
-    name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
-    state: present
+# # 公開リポジトリを追加
+# - name: Install MySQL repository
+#   become_user: root
+#   yum:
+#     name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
+#     state: present
 
-- name: Import GPG key 
-  become_user: root
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+# - name: Import GPG key 
+#   become_user: root
+#   ansible.builtin.rpm_key:
+#     state: present
+#     key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-# mysql本体をインストール
-- name: Install MySQL community server
-  become_user: root
-  yum:
-    name: mysql-community-server
-    state: present
+# # mysql本体をインストール
+# - name: Install MySQL community server
+#   become_user: root
+#   yum:
+#     name: mysql-community-server
+#     state: present
 
-- name: Start MySQL service
-  become_user: root
-  service:
-    name: mysqld
-    state: started
-    enabled: yes
+# - name: Start MySQL service
+#   become_user: root
+#   service:
+#     name: mysqld
+#     state: started
+#     enabled: yes
 
 
 
-# TASK [general : yum update] ****************************************************
-# fatal: [43.207.152.163]: FAILED! => 
-# {"changed": true, 
-# "changes": {"installed": [],
-#  "updated": [["mysql80-community-release", "el7-11.noarch from mysql80-community"],
-#   ["mysql-community-libs", "8.0.36-1.el7.x86_64 from mysql80-community"], 
-#   ["mysql-community-libs-compat", "8.0.36-1.el7.x86_64 from mysql80-community"]]},
-# "msg": "warning: /var/cache/yum/x86_64/2/mysql80-community/packages/mysql-community-client-plugins-8.0.36-1.el7.x86_64.rpm:
-#  Header V4 RSA/SHA256 Signature, key ID a8d3785c: NOKEY\n\n\nThe GPG keys listed for the
-#   \"MySQL 8.0 Community Server\"
-#   repository are already installed but they are not correct for this package.
-#   \nCheck that the correct key URLs are configured for this repository.\n\n\n
-#   Failing package is: mysql-community-client-plugins-8.0.36-1.el7.x86_64\n
-#   GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2022,
-#    file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql\n\n",
-#   "obsoletes": {"mariadb-libs": {"dist": "x86_64", "repo": "installed", "version": "1:5.5.68-1.amzn2.0.1"}},
-#    "rc": 1, 
-#    "results": ["Loaded plugins: extras_suggestions, langpacks, priorities, update-motd\n289 packages excluded due to repository priority protections\nResolving Dependencies\n
-#    --> Running transaction check\n
-#    ---> Package mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1 will be obsoleted\n
-#    ---> Package mysql-community-libs.x86_64 0:8.0.36-1.el7 will be obsoleting\n
-#    --> Processing Dependency: mysql-community-client-plugins = 8.0.36-1.el7 for package: mysql-community-libs-8.0.36-1.el7.x86_64\n
-#    --> Processing Dependency: mysql-community-common(x86-64) >= 8.0.11 for package: mysql-community-libs-8.0.36-1.el7.x86_64\n
-#    ---> Package mysql-community-libs-compat.x86_64 0:8.0.36-1.el7 will be obsoleting\n
-#    ---> Package mysql80-community-release.noarch 0:el7-7 will be updated\n
-#    ---> Package mysql80-community-release.noarch 0:el7-11 will be an update\n
-#    --> Running transaction check\n
-#    ---> Package mysql-community-client-plugins.x86_64 0:8.0.36-1.el7 will be installed\n
-#    ---> Package mysql-community-common.x86_64 0:8.0.36-1.el7 will be installed\n
-#    --> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package
-#    Arch    Version       Repository          Size\n================================================================================\nInstalling:\n mysql-community-libs            
-#    x86_64  8.0.36-1.el7  mysql80-community  1.5 M\n
-#   replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1\n 
-#   mysql-community-libs-compat
-#   x86_64  8.0.36-1.el7  mysql80-community  669 k\n
-#   replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1\nUpdating:\n
-#    mysql80-community-release       noarch  el7-11        mysql80-community   14 k\n
-#    Installing for dependencies:\n 
-#    mysql-community-client-plugins  x86_64  8.0.36-1.el7  mysql80-community  3.5 M\n
-#   mysql-community-common          x86_64  8.0.36-1.el7
-#   mysql80-community  665 k\n\nTransaction Summary\n================================================================================\nInstall  2 Packages (+2 Dependent packages)
-#   \nUpgrade  1 Package\n\nTotal size: 6.3 M\nDownloading packages:\n
-#   Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2022\nRetrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql\n"]}
+# # TASK [general : yum update] ****************************************************
+# # fatal: [43.207.152.163]: FAILED! => 
+# # {"changed": true, 
+# # "changes": {"installed": [],
+# #  "updated": [["mysql80-community-release", "el7-11.noarch from mysql80-community"],
+# #   ["mysql-community-libs", "8.0.36-1.el7.x86_64 from mysql80-community"], 
+# #   ["mysql-community-libs-compat", "8.0.36-1.el7.x86_64 from mysql80-community"]]},
+# # "msg": "warning: /var/cache/yum/x86_64/2/mysql80-community/packages/mysql-community-client-plugins-8.0.36-1.el7.x86_64.rpm:
+# #  Header V4 RSA/SHA256 Signature, key ID a8d3785c: NOKEY\n\n\nThe GPG keys listed for the
+# #   \"MySQL 8.0 Community Server\"
+# #   repository are already installed but they are not correct for this package.
+# #   \nCheck that the correct key URLs are configured for this repository.\n\n\n
+# #   Failing package is: mysql-community-client-plugins-8.0.36-1.el7.x86_64\n
+# #   GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2022,
+# #    file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql\n\n",
+# #   "obsoletes": {"mariadb-libs": {"dist": "x86_64", "repo": "installed", "version": "1:5.5.68-1.amzn2.0.1"}},
+# #    "rc": 1, 
+# #    "results": ["Loaded plugins: extras_suggestions, langpacks, priorities, update-motd\n289 packages excluded due to repository priority protections\nResolving Dependencies\n
+# #    --> Running transaction check\n
+# #    ---> Package mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1 will be obsoleted\n
+# #    ---> Package mysql-community-libs.x86_64 0:8.0.36-1.el7 will be obsoleting\n
+# #    --> Processing Dependency: mysql-community-client-plugins = 8.0.36-1.el7 for package: mysql-community-libs-8.0.36-1.el7.x86_64\n
+# #    --> Processing Dependency: mysql-community-common(x86-64) >= 8.0.11 for package: mysql-community-libs-8.0.36-1.el7.x86_64\n
+# #    ---> Package mysql-community-libs-compat.x86_64 0:8.0.36-1.el7 will be obsoleting\n
+# #    ---> Package mysql80-community-release.noarch 0:el7-7 will be updated\n
+# #    ---> Package mysql80-community-release.noarch 0:el7-11 will be an update\n
+# #    --> Running transaction check\n
+# #    ---> Package mysql-community-client-plugins.x86_64 0:8.0.36-1.el7 will be installed\n
+# #    ---> Package mysql-community-common.x86_64 0:8.0.36-1.el7 will be installed\n
+# #    --> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package
+# #    Arch    Version       Repository          Size\n================================================================================\nInstalling:\n mysql-community-libs            
+# #    x86_64  8.0.36-1.el7  mysql80-community  1.5 M\n
+# #   replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1\n 
+# #   mysql-community-libs-compat
+# #   x86_64  8.0.36-1.el7  mysql80-community  669 k\n
+# #   replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1\nUpdating:\n
+# #    mysql80-community-release       noarch  el7-11        mysql80-community   14 k\n
+# #    Installing for dependencies:\n 
+# #    mysql-community-client-plugins  x86_64  8.0.36-1.el7  mysql80-community  3.5 M\n
+# #   mysql-community-common          x86_64  8.0.36-1.el7
+# #   mysql80-community  665 k\n\nTransaction Summary\n================================================================================\nInstall  2 Packages (+2 Dependent packages)
+# #   \nUpgrade  1 Package\n\nTotal size: 6.3 M\nDownloading packages:\n
+# #   Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2022\nRetrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql\n"]}
 
