@@ -7,7 +7,7 @@
 
 - name: Import MySQL GPG key
   become_user: root
-  shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2022"
+  shell: rpm --import "https://repo.mysql.com/RPM-GPG-KEY-mysql-2023"
   args:
     creates: /var/lib/mysql/mysql80-community-release-el7-7.noarch.rpm
 
