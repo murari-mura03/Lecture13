@@ -17,14 +17,14 @@
     name: 'https://repo.mysql.com//mysql80-community-release-el7-7.noarch.rpm'
     state: present
 
-# - name: install mysql-community-server
-#   become_user: root
-#   yum: 
-#     name: mysql-community-server
-#     state: latest
+- name: install mysql-community-server
+  become_user: root
+  yum: 
+    name: mysql-community-server
+    state: latest
 
-# - name: install mysql-devel
-#   become_user: root
-#   yum: 
-#     name: mysql-devel
-#     state: latest
+- name: install mysql-devel
+  become_user: root
+  yum: 
+    name: mysql-devel
+    state: latest
