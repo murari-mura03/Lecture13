@@ -1,38 +1,19 @@
----
-- name: Remove MariaDB
-  become: true
-  yum:
-    name: mariadb-server
-    state: absent
-
-- name: Add MySQL repository
-  become_user: root   
-  yum:
-    name: https://dev.mysql.com/get/mysql80-community-release-el7-11.noarch.rpm
-    state: present
-    
-- name: Install MySQL Server
+- name: Download and install MySQL repository package
+  become_user: root
+  shell: rpm -Uvh "https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm"
+  args:
+    creates: /etc/yum.repos.d/mysql-community.repo
+      
+- name: Install mysql-devel
   become_user: root
   yum:
-    name: mysql-community-server
+    name: "{{ item }}"
     state: present
-  vars:
-    enablerepo: mysql80-community
-
-- name: Install MySQL Development Files
-  become_user: root
-  yum:
-    name: mysql-community-devel
-    state: present
-  vars:
-    enablerepo: mysql80-community
-  
-- name: Start MySQL service
-  become_user: root
-  service:
-    name: mysqld
-    state: started
-    enabled: yes
+  with_items:
+    - mysql-server
+    - mysql-devel
+    - mysql-community-devel
+    - mysql-community-server
 
 
 # # Install MySQL
