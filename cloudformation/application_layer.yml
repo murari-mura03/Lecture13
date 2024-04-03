@@ -74,6 +74,7 @@ Resources:
         - !ImportValue PrivateSubnet1aId
         - !ImportValue PrivateSubnet1cId
 
+# ALB
   Lecture13ALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
