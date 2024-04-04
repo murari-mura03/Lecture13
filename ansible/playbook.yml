@@ -9,4 +9,4 @@
     - ruby
     - nginx
     - mysql
-    # - setup_server
+    - setup_server
