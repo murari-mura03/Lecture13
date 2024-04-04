@@ -22,3 +22,9 @@
   yum: 
     name: mysql-community-server
     state: present
+
+- name: install mysql-community-devel
+  become_user: root
+  yum: 
+    name: mysql-community-devel
+    state: present
