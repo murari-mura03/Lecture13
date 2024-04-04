@@ -17,3 +17,18 @@
   shell: bash -lc "bundle install"
   args:
     chdir: raisetech-live8-sample-app
+
+# RDS
+- name: Check if database.yml.sample exists
+  stat:
+    path: /home/ec2-user/raisetech-live8-sample-app/config/database.yml.sample
+  register: file_check
+
+- name: Rename database.yml.sample
+  command: mv /home/ec2-user/raisetech-live8-sample-app/config/database.yml.sample /home/ec2-user/raisetech-live8-sample-app/config/database.yml
+  when: file_check.stat.exists
+
+- name: Render database.yml from template
+  template:
+    src: roles/setup_server/template/database.yml.j2
+    dest: /home/ec2-user/raisetech-live8-sample-app/config/database.yml
