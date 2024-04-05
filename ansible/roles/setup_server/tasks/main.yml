@@ -50,6 +50,6 @@
 
 - name: Generate puma.rb from template
   template:
-    src: roles/setup_server/templates/puma.rb.j2  
+    src: roles/setup_server/template/puma.rb.j2  
     dest: /home/ec2-user/raisetech-live8-sample-app/webpack/puma.rb
 
