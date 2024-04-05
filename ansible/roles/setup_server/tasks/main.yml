@@ -32,3 +32,24 @@
   template:
     src: roles/setup_server/template/database.yml.j2
     dest: /home/ec2-user/raisetech-live8-sample-app/config/database.yml
+
+# puma
+- name: Check if puma.service.sample exists
+  stat:
+    path: /path/to/samples/puma.service.sample
+  register: puma_service_check
+
+- name: Move puma.service
+  command: mv /home/ec2-user/raisetech-live8-sample-app/samples/puma.service.sample /home/ec2-user/raisetech-live8-sample-app/etc/systemd/system/puma.service
+  when: puma_service_check.stat.exists
+
+- name: Check if puma.rb exists
+  stat:
+    path: /home/ec2-user/raisetech-live8-sample-app/webpack/puma.rb
+  register: puma_check
+
+- name: Generate puma.rb from template
+  template:
+    src: roles/setup_server/templates/puma.rb.j2  
+    dest: /home/ec2-user/raisetech-live8-sample-app/webpack/puma.rb
+
