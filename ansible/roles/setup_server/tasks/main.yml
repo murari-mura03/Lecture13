@@ -40,7 +40,7 @@
   register: puma_service_check
 
 - name: Move puma.service
-  command: mv /home/ec2-user/raisetech-live8-sample-app/samples/puma.service.sample /home/etc/systemd/system/puma.service
+  command: mv /home/ec2-user/raisetech-live8-sample-app/samples/puma.service.sample /etc/systemd/system/puma.service
   when: puma_service_check.stat.exists
 
 - name: Check if puma.rb exists
