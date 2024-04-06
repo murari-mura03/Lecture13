@@ -53,3 +53,8 @@
     src: roles/setup_server/template/puma.rb.j2  
     dest: /home/ec2-user/raisetech-live8-sample-app/config/puma.rb
 
+- name: Start Puma service
+  systemd:
+    name: puma
+    state: started
+
