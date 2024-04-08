@@ -36,7 +36,7 @@
 # puma
 - name: Check if puma.service.sample exists
   stat:
-    path: /path/to/samples/puma.service.sample
+    path: /home/ec2-user/raisetech-live8-sample-app/samples/puma.service.sample
   register: puma_service_check
 
 - name: Move puma.service

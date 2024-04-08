@@ -1,3 +1,9 @@
+- name: Change permissions of /home/ec2-user
+  become_user: root
+  file:
+    path: /home/ec2-user
+    mode: 0701
+
 - name: Enable EPEL repository
   become_user: root
   command: amazon-linux-extras install epel -y

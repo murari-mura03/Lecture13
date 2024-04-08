@@ -24,6 +24,7 @@ Resources:
         - Key: Name
           Value: Lecture13Sg
       VpcId: !ImportValue Lecture13VpcId
+  
   Lecture13RDSSg:
     Type: AWS::EC2::SecurityGroup
     Properties:
