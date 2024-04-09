@@ -17,12 +17,14 @@
   become_user: root
   ansible.builtin.lineinfile:
     path: /home/ec2-user/raisetech-live8-sample-app/config/application.rb
+    insertbefore: config.generators.system_tests = nil
+    firstmatch: yes
     line: config.active_storage.variant_processor = :mini_magick
 
 - name: Install Bundler
   shell: bash -lc "bundle install"
   args:
-    chdir: raisetech-live8-sample-app
+    chdir: /home/ec2-user/raisetech-live8-sample-app/
 
 # RDS
 - name: Check if database.yml.sample exists

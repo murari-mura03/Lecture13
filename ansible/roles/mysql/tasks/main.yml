@@ -28,3 +28,9 @@
   yum: 
     name: mysql-community-devel
     state: present
+
+- name: Start MySQL service
+  become_user: root
+  service:
+    name: mysqld
+    state: started
