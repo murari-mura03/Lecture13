@@ -79,5 +79,4 @@
     register: bundler_check
 
   - name: Install Bundler
-    become_user: root
     command: bash -lc "gem install bundler"
