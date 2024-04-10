@@ -11,4 +11,10 @@ bin/setup
   template:
     src: roles/nginx/template/nginx.conf.j2
     dest: "/etc/nginx/conf.d/app.conf"
-- rails.conf→app.confへ
+- rails.conf→app.conf
+
+- config/environments/development.rb
+- config.hosts記述追加
+
+- rails s しないとpumaは立ち上がらない
+- またpathが通らなくなってる？

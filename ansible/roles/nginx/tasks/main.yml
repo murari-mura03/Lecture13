@@ -20,7 +20,7 @@
     name: nginx
     state: started
 
-- name: create rails.conf
+- name: create app.conf
   become_user: root
   template:
     src: roles/nginx/template/nginx.conf.j2
