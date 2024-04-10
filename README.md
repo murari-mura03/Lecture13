@@ -5,3 +5,10 @@ terraform-ansible-circleci
 bundlerのインストール
 bundle install
 bin/setup
+
+- name: create rails.conf
+  become_user: root
+  template:
+    src: roles/nginx/template/nginx.conf.j2
+    dest: "/etc/nginx/conf.d/app.conf"
+- rails.conf→app.confへ
