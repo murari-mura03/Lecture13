@@ -71,3 +71,15 @@
       user_install: no
       executable: /home/ec2-user/.rbenv/shims/gem
     when: rails_check is failed
+
+# Install Bundler
+  - name: Check if Bundler is installed
+    stat:
+      path: /home/ec2-user/.rbenv/versions/3.2.3/bin/bundle
+    register: bundler_check
+
+  - name: Install Bundler
+    ansible.builtin.command: gem install bundler
+    args:
+      executable: /bin/bash
+    when: not bundler_check.stat.exists

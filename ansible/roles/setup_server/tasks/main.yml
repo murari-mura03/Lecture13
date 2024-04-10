@@ -21,11 +21,6 @@
     firstmatch: yes
     line: config.active_storage.variant_processor = :mini_magick
 
-- name: Install Bundler
-  shell: bash -lc "bundle install"
-  args:
-    chdir: /home/ec2-user/raisetech-live8-sample-app/
-
 # RDS
 - name: Check if database.yml.sample exists
   stat:
@@ -61,6 +56,18 @@
   template:
     src: roles/setup_server/template/puma.rb.j2  
     dest: /home/ec2-user/raisetech-live8-sample-app/config/puma.rb
+
+- name: Change directory to your Rails app directory
+  ansible.builtin.cd:
+    path: /home/ec2-user/raisetech-live8-sample-app/
+
+- name: Install Bundler
+  shell: bash -lc "bundle install"
+  args:
+    chdir: /home/ec2-user/raisetech-live8-sample-app/
+
+- name: Run bin/setup
+  ansible.builtin.command: bin/setup
 
 - name: Start Puma service
   systemd:
