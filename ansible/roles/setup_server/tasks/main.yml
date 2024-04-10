@@ -66,8 +66,7 @@
     chdir: /home/ec2-user/raisetech-live8-sample-app/
 
 - name: Run bin/setup
-  become_user: root
-  ansible.builtin.command: rbenv exec ruby bin/setup
+  command: bin/setup
   args:
     chdir: /home/ec2-user/raisetech-live8-sample-app/
 
