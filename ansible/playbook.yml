@@ -11,6 +11,6 @@
     - general
     - node_yarn
     - ruby
-    # - nginx
-    # - mysql
+    - nginx
+    - mysql
     # - setup_server
