@@ -58,8 +58,7 @@
     dest: /home/ec2-user/raisetech-live8-sample-app/config/puma.rb
 
 - name: Change directory to your Rails app directory
-  ansible.builtin.cd:
-    path: /home/ec2-user/raisetech-live8-sample-app/
+  command: cd /home/ec2-user/raisetech-live8-sample-app/
 
 - name: Install Bundler
   shell: bash -lc "bundle install"
