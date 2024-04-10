@@ -10,7 +10,7 @@
   roles:
     - general
     - node_yarn
-    - ruby
-    - nginx
-    - mysql
-    - setup_server
+    # - ruby
+    # - nginx
+    # - mysql
+    # - setup_server
