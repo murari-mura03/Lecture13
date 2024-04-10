@@ -80,4 +80,4 @@
 
   - name: Install Bundler
     become_user: root
-    command: bash -lc "gem install bundler -v 2.3.14"
+    command: bash -lc "gem install bundler"
