@@ -16,7 +16,7 @@
 - name: add alb-dns to config/environments/development.rb
   become_user: root
   ansible.builtin.lineinfile:
-    path: /home/ec2-user/raisetech-live8-sample-app/environments/development.rb
+    path: /home/ec2-user/raisetech-live8-sample-app/config/environments/development.rb
     insertbefore: config.action_controller.raise_on_missing_callback_actions = true
     firstmatch: yes
     line: config.hosts << "Lecture13ALB-34557928.ap-northeast-1.elb.amazonaws.com"
