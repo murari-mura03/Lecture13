@@ -19,7 +19,7 @@
     path: /home/ec2-user/raisetech-live8-sample-app/environments/development.rb
     insertbefore: config.action_controller.raise_on_missing_callback_actions = true
     firstmatch: yes
-    line: config.hosts << "{{ ALB_DNS }}"
+    line: config.hosts << "Lecture13ALB-34557928.ap-northeast-1.elb.amazonaws.com"
 
 - name: add mini_magick to config/application.rb
   become_user: root
