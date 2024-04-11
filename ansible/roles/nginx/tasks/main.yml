@@ -6,7 +6,7 @@
 
 - name: Enable nginx repository
   become_user: root
-  command: amazon-linux-extras install nginx1
+  command: amazon-linux-extras install nginx1 -y
 
 - name: Start nginx service
   become_user: root
