@@ -4,7 +4,7 @@
     path: /home/ec2-user
     mode: 0701
 
-- name: Enable nginx repository
+- name: Install nginx
   become_user: root
   command: amazon-linux-extras install nginx1 -y
 
