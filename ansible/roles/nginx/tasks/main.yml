@@ -4,15 +4,9 @@
     path: /home/ec2-user
     mode: 0701
 
-- name: Enable EPEL repository
+- name: Enable nginx repository
   become_user: root
-  command: amazon-linux-extras install epel -y
-
-- name: Install Nginx
-  become_user: root
-  yum:
-    name: nginx
-    state: latest
+  command: amazon-linux-extras install nginx1
 
 - name: Start nginx service
   become_user: root
