@@ -1,6 +1,7 @@
 # lecture13_0329
 terraform-ansible-circleci
 
+ただのメモです
 追加
 bundlerのインストール
 bundle install

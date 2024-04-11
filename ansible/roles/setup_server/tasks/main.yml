@@ -19,7 +19,7 @@
     path: /home/ec2-user/raisetech-live8-sample-app/config/environments/development.rb
     insertbefore: config.action_controller.raise_on_missing_callback_actions = true
     firstmatch: yes
-    line: config.hosts << "Lecture13ALB-34557928.ap-northeast-1.elb.amazonaws.com"
+    line: config.hosts << "Lecture13ALB-2074592126.ap-northeast-1.elb.amazonaws.com"
 
 - name: add mini_magick to config/application.rb
   become_user: root
@@ -79,6 +79,7 @@
     chdir: /home/ec2-user/raisetech-live8-sample-app/
 
 - name: Start Puma service
+  become_user: root
   systemd:
     name: puma
     state: started
