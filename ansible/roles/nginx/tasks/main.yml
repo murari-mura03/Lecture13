@@ -8,20 +8,26 @@
   become_user: root
   command: amazon-linux-extras install nginx1 -y
 
-- name: Start nginx service
-  become_user: root
-  service:
-    name: nginx
-    state: started
-
 - name: create app.conf
   become_user: root
   template:
     src: roles/nginx/template/nginx.conf.j2
     dest: "/etc/nginx/conf.d/app.conf"
 
-- name: Enable nginx service
+- name: add server_names_hash_bucket_size to http block in nginx.conf
   become_user: root
-  service:
-    name: nginx
-    enabled: yes
+  ansible.builtin.blockinfile:
+    path: /etc/nginx/nginx.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: |
+      http {
+        server_names_hash_bucket_size 128;
+      }
+# - name: add mini_magick to config/application.rb
+#   become_user: root
+#   ansible.builtin.lineinfile:
+#     path: /etc/nginx/nginx.conf
+#     insertbefore: types_hash_max_size 4096;
+#     firstmatch: yes
+#     line: server_names_hash_bucket_size 128;
+

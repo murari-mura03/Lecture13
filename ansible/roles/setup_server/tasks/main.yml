@@ -19,7 +19,7 @@
     path: /home/ec2-user/raisetech-live8-sample-app/config/environments/development.rb
     insertbefore: config.action_controller.raise_on_missing_callback_actions = true
     firstmatch: yes
-    line: config.hosts << "Lecture13ALB-1951823606.ap-northeast-1.elb.amazonaws.com"
+    line: config.hosts << ""{{ alb_dns }}""
 
 - name: add mini_magick to config/application.rb
   become_user: root
@@ -27,7 +27,18 @@
     path: /home/ec2-user/raisetech-live8-sample-app/config/application.rb
     insertbefore: config.generators.system_tests = nil
     firstmatch: yes
-    line: config.active_storage.variant_processor = :mini_magickXS
+    line: config.active_storage.variant_processor = :mini_magick
+
+- name: Create tmp/sokets directory
+  file:
+    path: /home/ec2-user/raisetech-live8-sample-app/tmp/sokets
+    state: directory
+
+- name: Create tmp/pids directory
+  file:
+    path: /home/ec2-user/raisetech-live8-sample-app/tmp/pids
+    state: directory
+
 
 # RDS
 - name: Check if database.yml.sample exists
@@ -83,4 +94,17 @@
   systemd:
     name: puma
     state: started
+
+# nginx start
+- name: Start nginx service
+  become_user: root
+  service:
+    name: nginx
+    state: started
+
+- name: Enable nginx service
+  become_user: root
+  service:
+    name: nginx
+    enabled: yes
 
