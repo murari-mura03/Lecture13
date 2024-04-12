@@ -14,7 +14,7 @@
     src: roles/nginx/template/nginx.conf.j2
     dest: "/etc/nginx/conf.d/app.conf"
 
-# - name: add server_names_hash_bucket_size to http block in nginx.conf
+# - name: 
 #   become_user: root
 #   ansible.builtin.blockinfile:
 #     path: /etc/nginx/nginx.conf
@@ -23,7 +23,7 @@
 #       http {
 #         server_names_hash_bucket_size 128;
 #       }
-- name: add mini_magick to config/application.rb
+- name: add server_names_hash_bucket_size to http block in nginx.conf
   become_user: root
   ansible.builtin.lineinfile:
     path: /etc/nginx/nginx.conf
