@@ -17,7 +17,7 @@ describe command('ps aux | grep puma') do
   its(:exit_status) { should eq 0 }
 end
 
-# アプリケーションがデータベースと正しくやり取りできることを確認
-describe command('rails db:test:prepare') do
-  its(:exit_status) { should eq 0 }
+# ポート80がリスニング状態であることを確認
+describe port(listen_port) do
+  it { should be_listening }
 end
