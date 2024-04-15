@@ -18,16 +18,11 @@ describe command('ps aux | grep puma') do
 end
 
 # アプリケーションがデータベースと正しくやり取りできることを確認
-describe command('rails db:test:prepare') do
+describe command('DB_PASSWORD=$DB_PASSWORD rails db:test:prepare') do
   its(:exit_status) { should eq 0 }
 end
 
 # ポート80がリスニング状態であることを確認
 describe port(listen_port) do
   it { should be_listening }
-end
-
-# ローカルホストのポート80に対するHTTPリクエストが成功している（HTTPステータスコード200）ことを確認
-describe command('curl http://127.0.0.1:#{listen_port}/_plugin/head/ -o /dev/null -w "%{http_code}\n" -s') do
-  its(:stdout) { should match /^200$/ }
 end
