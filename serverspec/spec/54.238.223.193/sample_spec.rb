@@ -18,7 +18,7 @@ describe command('ps aux | grep puma') do
 end
 
 # アプリケーションがデータベースと正しくやり取りできることを確認
-describe command('rails db:test:prepare') do
+describe command('cd /path/to/your/rails/project && rails db:test:prepare') do
   let(:disable_sudo) { true }
   its(:exit_status) { should eq 0 }
 end
