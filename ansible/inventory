@@ -1,2 +1,2 @@
 [targets]
-18.183.213.210 ansible_user=ec2-user
+3.112.174.115 ansible_user=ec2-user
