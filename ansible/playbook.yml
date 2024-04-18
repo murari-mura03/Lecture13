@@ -1,0 +1,17 @@
+- name: main-playbook
+  hosts: all
+  become_user: ec2-user
+  become: True
+
+  vars:
+    db_password: "{{ lookup('env', 'DB_PASSWORD') }}"
+    db_host: "{{ lookup('env', 'DB_HOST') }}"
+    alb_dns: "{{ lookup('env', 'ALB_DNS') }}"
+
+  roles:
+    - general
+    - node_yarn
+    - ruby
+    - nginx
+    - mysql
+    - setup_server
