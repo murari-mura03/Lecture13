@@ -21,3 +21,9 @@ end
 describe port(listen_port) do
   it { should be_listening }
 end
+
+# ローカルホストのポート80に対するHTTPリクエストが成功している（HTTPステータスコード200）ことを確認
+describe command('curl http://127.0.0.1:#{listen_port}/_plugin/head/ -o /dev/null -w "%{http_code}\n" -s') do
+  let(:disable_sudo) { true }
+  its(:stdout) { should match /^200$/ }
+end
